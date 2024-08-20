@@ -13,8 +13,7 @@ int procurarElemento(LISTA **lista, int valor);
 int tamanhoLista(LISTA **lista);
 void imprimirLista(LISTA **lista);
 void pressioneBotaoParaContinuar();
-// depois remover
-LISTA *inserirElemMeioLista(LISTA **lista, int elem, int ant);
-
+void crieUmaLista();
+void liberarMemoriaLista(LISTA **lista);
 
 #endif

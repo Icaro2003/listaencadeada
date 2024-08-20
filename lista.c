@@ -230,40 +230,19 @@ void pressioneBotaoParaContinuar()
     getchar();
 }
 
-// funções que vou remover
-LISTA *inserirElemMeioLista(LISTA **lista, int elem, int ant)
+void crieUmaLista()
 {
-    if (elem < 0 || ant < 0)
-    {
-        printf("Valores negativos, não é possível inserir elementos no meio da lista!\n");
-    }
+    printf("Crie uma lista!\n");
+}
 
-    LISTA *aux, *novo = (LISTA *)malloc(sizeof(LISTA));
+void liberarMemoriaLista(LISTA **lista)
+{
+    LISTA *aux;
 
-    if (novo == NULL)
-    {
-        printf("Erro ao alocar memória para inserir elemento no meio da lista!\n");
-    }
-
-    novo->info = elem;
-
-    if (*lista == NULL)
-    {
-        novo->prox = NULL;
-        *lista = novo;
-    }
-    else
+    while (*lista != NULL)
     {
         aux = *lista;
-
-        while (aux->info != ant && aux->prox != NULL)
-        {
-            aux = aux->prox;
-        }
-
-        novo->prox = aux->prox;
-        aux->prox = novo;
+        *lista = aux->prox;
+        free(aux);
     }
-
-    return *lista;
 }
