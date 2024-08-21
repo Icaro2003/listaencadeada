@@ -19,7 +19,7 @@ int main()
         printf("2. Inserir Elemento no Início\n");
         printf("3. Inserir Elemento no Final\n");
         printf("4. Inserir Elemento em uma Posição\n");
-        printf("5. Remover Elemento por Valor\n");
+        printf("5. Remover Elemento por Posição\n");
         printf("6. Remover Elemento por Valor\n");
         printf("7. Obter Elemento por Posição\n");
         printf("8. Procurar Elemento\n");
@@ -82,7 +82,34 @@ int main()
 
             pressioneBotaoParaContinuar();
             break;
-        // falta as funções de remover
+        case 5:
+            if (criouLista != 0)
+            {
+                printf("Informe a posição para remover valor: ");
+                scanf("%d", &posicao);
+                novaLista = removerElemPosicaoLista(&novaLista, posicao);
+            }
+            else
+            {
+                crieUmaLista();
+            }
+
+            pressioneBotaoParaContinuar();
+            break;
+        case 6:
+            if (criouLista != 0)
+            {
+                printf("Informe um valor inteiro para remover na lista: ");
+                scanf("%d", &valor);
+                novaLista = removerElemValorLista(&novaLista, valor);
+            }
+            else
+            {
+                crieUmaLista();
+            }
+
+            pressioneBotaoParaContinuar();
+            break;
         case 7:
             if (criouLista != 0)
             {

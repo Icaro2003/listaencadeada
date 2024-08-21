@@ -111,7 +111,7 @@ LISTA *inserirElemPosicaoLista(LISTA **lista, int elem, int pos)
 
         if (pos < 0 || pos >= tamanhoLista(lista))
         {
-            printf("Posição inválida!\n");
+            printf("Posição inválida, não é possível inserir elementos por posição!\n");
             return *lista;
         }
 
@@ -122,8 +122,97 @@ LISTA *inserirElemPosicaoLista(LISTA **lista, int elem, int pos)
     return *lista;
 }
 
-// funções de remoção
-// ...
+LISTA *removerElemPosicaoLista(LISTA **lista, int pos)
+{
+    if (*lista == NULL)
+    {
+        printf("Lista vazia, não é possível remover elementos pela posição!\n");
+        return *lista;
+    }
+
+    LISTA *remover = NULL;
+    int tam = 0;
+
+    if (pos == 0)
+    {
+        remover = *lista;
+        *lista = remover->prox;
+    }
+    else
+    {
+        LISTA *aux = *lista;
+
+        while (aux->prox != NULL && tam < pos - 1)
+        {
+            aux = aux->prox;
+            tam++;
+        }
+
+        if (pos < 0 || pos >= tamanhoLista(lista))
+        {
+            printf("Posição inválida, não é possível remover elementos por posição!\n");
+            return *lista;
+        }
+        
+        if (aux->prox != NULL)
+        {
+            remover = aux->prox;
+            aux->prox = remover->prox;
+        }
+    }
+
+    if (remover != NULL)
+    {
+        free(remover);
+    }
+    
+    return *lista;
+}
+
+LISTA *removerElemValorLista(LISTA **lista, int elem)
+{
+    if (*lista == NULL)
+    {
+        printf("Lista vazia, não é possível remover elementos pela posição!\n");
+        return *lista;
+    }
+    
+    if (elem < 0)
+    {
+        printf("Valor negativo, não é possível remover elementos pela posição!");
+        return *lista;
+    }
+
+    LISTA *remover = NULL;
+
+    if ((*lista)->info == elem)
+    {
+        remover = *lista;
+        *lista = remover->prox;
+    }
+    else
+    {
+        LISTA *aux = *lista;
+
+        while (aux != NULL && aux->prox->info != elem)
+        {
+            aux = aux->prox;
+        }
+        
+        if (aux->prox != NULL)
+        {
+            remover = aux->prox;
+            aux->prox = remover->prox;
+        }
+    }
+
+    if (remover != NULL)
+    {
+        free(remover);
+    }
+
+    return *lista;
+}
 
 int obterElementoPosicao(LISTA **lista, int pos)
 {
@@ -140,6 +229,12 @@ int obterElementoPosicao(LISTA **lista, int pos)
     {
         aux = aux->prox;
         tam++;
+    }
+
+    if (pos < 0 || pos >= tamanhoLista(lista))
+    {
+        printf("Posição inválida! Não é possível obter elemento!\n");
+        return -1;
     }
 
     return aux->info;
