@@ -258,6 +258,13 @@ int obterElementoPosicao(LISTA **lista, int pos)
         return -1; // Retorna -1 para indicar erro
     }
 
+    // Verifica se a posição é válida
+    if (pos < 0 || pos >= tamanhoLista(lista))
+    {
+        printf("Posição inválida! Não é possível obter elemento!\n");
+        return -1; // Retorna -1 para indicar erro
+    }
+
     int tam = 0; // Variável para controlar a posição atual
     LISTA *aux = *lista; // Inicializa o auxiliar no primeiro nó
 
@@ -266,13 +273,6 @@ int obterElementoPosicao(LISTA **lista, int pos)
     {
         aux = aux->prox;
         tam++; // Iteração para controlar a posição desejada
-    }
-
-    // Verifica se a posição é válida
-    if (pos < 0 || pos >= tamanhoLista(lista))
-    {
-        printf("Posição inválida! Não é possível obter elemento!\n");
-        return -1; // Retorna -1 para indicar erro
     }
 
     return aux->info; // Retorna o valor do elemento na posição especificada
@@ -322,6 +322,7 @@ int procurarElemento(LISTA **lista, int valor)
     return tam; // Retorna a posição do elemento encontrado
 }
 
+// Função que retorna o número de elementos atualmente na lista
 int tamanhoLista(LISTA **lista)
 {
     // Verifica se a lista está vazia
